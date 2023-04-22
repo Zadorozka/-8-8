@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LEN 100 // Maximum length of the sentence
+
+int main() {
+    char sentence[MAX_LEN];
+    printf("Введіть речення: ");
+    fgets(sentence, MAX_LEN, stdin); // Read the sentence from the user
+
+    char *token, *shortest_word;
+    int shortest_len = MAX_LEN; // Initialize the shortest length to maximum
+
+    token = strtok(sentence, " "); // Get the first token
+
+    while (token != NULL) { // Loop through all the tokens in the sentence
+        int len = strlen(token);
+        if (len < shortest_len) { // Check if the current token is shorter than the previous shortest word
+            shortest_len = len;
+            shortest_word = token;
+        }
+        token = strtok(NULL, " "); // Get the next token
+    }
+
+    printf("Найкоротше слово: %s\n", shortest_word); // Print the shortest word
+
+    return 0;
+}
